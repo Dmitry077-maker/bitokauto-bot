@@ -9,6 +9,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEB_URL = "https://bitokauto-bot.onrender.com"
 
+
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 app = FastAPI()
@@ -30,7 +31,7 @@ def get_main_keyboard():
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
     await message.answer(
-        "Здорово, Димончик!\n\nЦе офіційний бот **BitokAuto.ua** — аукційні авто із США та Європи.",
+        "Привіт, Димончик!\n\nЦе офіційний бот **BitokAuto.ua** — аукційні авто із США та Європи.",
         reply_markup=get_main_keyboard(),
         parse_mode="Markdown"
     )
