@@ -46,7 +46,12 @@ WEBHOOK_URL = f"{WEB_URL}{WEBHOOK_PATH}"
 @app.on_event("startup")
 async def on_startup():
     logging.basicConfig(level=logging.INFO)
+    # Сначала сбрасываем старый зависший вебхук Telegram
+    await bot.delete_webhook(drop_pending_updates=True)
+    # И принудительно вешаем на актуальный адрес с хвостом -3444
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
+    print(f"WEBHOOK SET TO: {WEBHOOK_URL}")
+
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(request: Request):
