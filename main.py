@@ -9,6 +9,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
+from aiogram.filters import Command
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEB_URL = "https://bitokauto-bot-372810.onrender.com"
