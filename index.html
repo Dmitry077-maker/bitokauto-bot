@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitokAuto.ua — Каталог авто</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800 px-4 py-3 flex justify-between items-center">
+        <h1 class="text-xl font-black tracking-wider text-amber-500">BITOKAUTO<span class="text-white">.UA</span></h1>
+        <span class="text-xs bg-zinc-800 text-zinc-400 px-2 py-1 rounded-full">США & Европа</span>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-md mx-auto p-4 space-y-4 pb-20">
+        
+        <!-- Search & Filter Bar -->
+        <div class="space-y-2">
+            <input type="text" placeholder="Поиск по модели или VIN..." class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition">
+            <div class="flex gap-2 overflow-x-auto pb-1 text-xs">
+                <button class="bg-amber-500 text-zinc-950 font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap">Все лоты</button>
+                <button class="bg-zinc-900 border border-zinc-800 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">США (Copart)</button>
+                <button class="bg-zinc-900 border border-zinc-800 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">Европа</button>
+                <button class="bg-zinc-900 border border-zinc-800 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">Целые / На ходу</button>
+            </div>
+        </div>
+
+        <!-- Car Cards List -->
+        <div class="space-y-4" id="catalog-list">
+            
+            <!-- Card 1 -->
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg">
+                <div class="relative bg-zinc-800 h-48 flex items-center justify-center text-zinc-500 text-sm">
+                    <!-- Здесь будет фото "Было / Стало" -->
+                    <span>Фото лота (Аукцион США)</span>
+                    <span class="absolute top-3 left-3 bg-red-500/90 text-white text-[10px] font-bold px-2 py-1 rounded-md">Передний удар</span>
+                </div>
+                <div class="p-4 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-base">2021 Ford Mustang EcoBoost</h3>
+                            <p class="text-xs text-zinc-400">VIN: 1FA6P8CF3M510XXXX</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-amber-400 font-extrabold text-base">$14,200</span>
+                            <p class="text-[10px] text-zinc-500">под ключ в Украине</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2 text-xs text-zinc-300 border-t border-zinc-800/80">
+                        <div>📍 Лот: Copart (Texas)</div>
+                        <div>⚙️ Пробег: 42 тыс. миль</div>
+                    </div>
+                    <button onclick="openCarModal('Ford Mustang 2021')" class="w-full mt-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-2.5 rounded-xl text-xs transition">
+                        Смотреть историю и расчет
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg">
+                <div class="relative bg-zinc-800 h-48 flex items-center justify-center text-zinc-500 text-sm">
+                    <span>Фото лота (Европа)</span>
+                    <span class="absolute top-3 left-3 bg-amber-500/90 text-zinc-950 text-[10px] font-bold px-2 py-1 rounded-md">Легкие царапины</span>
+                </div>
+                <div class="p-4 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-base">2020 BMW 330i xDrive</h3>
+                            <p class="text-xs text-zinc-400">VIN: WBA5R1C09LF7XXXXX</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-amber-400 font-extrabold text-base">$19,800</span>
+                            <p class="text-[10px] text-zinc-500">под ключ в Украине</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2 text-xs text-zinc-300 border-t border-zinc-800/80">
+                        <div>📍 Лот: Германия (Mobile.de)</div>
+                        <div>⚙️ Пробег: 85 тыс. км</div>
+                    </div>
+                    <button onclick="openCarModal('BMW 330i 2020')" class="w-full mt-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-2.5 rounded-xl text-xs transition">
+                        Смотреть историю и расчет
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Растягиваем WebApp на весь экран телефона
+
+        function openCarModal(carName) {
+            tg.showAlert(`Вы выбрали: ${carName}. Скоро здесь откроется полная история лота с аукциона и калькулятор доставки!`);
+        }
+    </script>
+</body>
+</html>
