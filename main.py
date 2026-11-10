@@ -10,7 +10,7 @@ from aiogram.filters import Command
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-WEB_URL = "https://bitokauto-bot-3444.onrender.com"
+WEB_URL = "https://bitokauto-bot-372810.onrender.com"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
