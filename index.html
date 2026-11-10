@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitokAuto.ua — Каталог авто із США та Європи</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800 px-4 py-3 flex justify-between items-center">
+        <h1 class="text-xl font-black tracking-wider text-amber-500">BITOKAUTO<span class="text-white">.UA</span></h1>
+        <span class="text-xs bg-zinc-800 text-zinc-400 px-2.5 py-1 rounded-full font-medium">США & Європа</span>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-md mx-auto p-4 space-y-4 pb-24">
+        
+        <!-- Search & Filter Bar -->
+        <div class="space-y-3">
+            <input type="text" id="searchInput" placeholder="Пошук за моделлю або VIN..." oninput="filterCars()" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition text-white">
+            <div class="flex gap-2 overflow-x-auto pb-1 text-xs no-scrollbar">
+                <button onclick="setFilter('all', this)" class="filter-btn bg-amber-500 text-zinc-950 font-semibold px-3.5 py-2 rounded-xl whitespace-nowrap transition">Всі лоти</button>
+                <button onclick="setFilter('usa', this)" class="filter-btn bg-zinc-900 border border-zinc-800 text-zinc-300 px-3.5 py-2 rounded-xl whitespace-nowrap transition">США (Copart)</button>
+                <button onclick="setFilter('europe', this)" class="filter-btn bg-zinc-900 border border-zinc-800 text-zinc-300 px-3.5 py-2 rounded-xl whitespace-nowrap transition">Європа</button>
+                <button onclick="setFilter('intact', this)" class="filter-btn bg-zinc-900 border border-zinc-800 text-zinc-300 px-3.5 py-2 rounded-xl whitespace-nowrap transition">Цілі / На ходу</button>
+            </div>
+        </div>
+
+        <!-- Car Cards List -->
+        <div class="space-y-4" id="catalog-list">
+            
+            <!-- Card 1 -->
+            <div class="car-card bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg" data-category="usa" data-name="2021 ford mustang ecoboost 1fa6p8cf3m510">
+                <div class="relative bg-zinc-800 h-48 flex items-center justify-center text-zinc-500 text-sm">
+                    <span>Фото лота (Аукціон США)</span>
+                    <span class="absolute top-3 left-3 bg-red-500/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Передній удар</span>
+                </div>
+                <div class="p-4 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-base">2021 Ford Mustang EcoBoost</h3>
+                            <p class="text-xs text-zinc-400">VIN: 1FA6P8CF3M510XXXX</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-amber-400 font-extrabold text-base">$14,200</span>
+                            <p class="text-[10px] text-zinc-500">під ключ в Україні</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2 text-xs text-zinc-300 border-t border-zinc-800/80">
+                        <div>📍 Лот: Copart (Texas)</div>
+                        <div>⚙️ Пробіг: 42 тис. миль</div>
+                    </div>
+                    <button onclick="openCarModal('2021 Ford Mustang EcoBoost', '$14,200', 'Copart (Texas)', '42 тис. миль', 'Передній удар (розбитий бампер, радіатор)', 'https://copart.com')" class="w-full mt-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-2.5 rounded-xl text-xs transition">
+                        Дивитися історію та розрахунок
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="car-card bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg" data-category="europe" data-name="2020 bmw 330i xdrive wba5r1c09lf7">
+                <div class="relative bg-zinc-800 h-48 flex items-center justify-center text-zinc-500 text-sm">
+                    <span>Фото лота (Європа)</span>
+                    <span class="absolute top-3 left-3 bg-amber-500/90 text-zinc-950 text-[10px] font-bold px-2.5 py-1 rounded-md">Легкі подряпини</span>
+                </div>
+                <div class="p-4 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-base">2020 BMW 330i xDrive</h3>
+                            <p class="text-xs text-zinc-400">VIN: WBA5R1C09LF7XXXXX</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-amber-400 font-extrabold text-base">$19,800</span>
+                            <p class="text-[10px] text-zinc-500">під ключ в Україні</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2 text-xs text-zinc-300 border-t border-zinc-800/80">
+                        <div>📍 Лот: Німеччина (Mobile.de)</div>
+                        <div>⚙️ Пробіг: 85 тис. км</div>
+                    </div>
+                    <button onclick="openCarModal('2020 BMW 330i xDrive', '$19,800', 'Німеччина (Mobile.de)', '85 тис. км', 'Незначні подряпини крила, ціла геометрія', 'https://mobile.de')" class="w-full mt-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-2.5 rounded-xl text-xs transition">
+                        Дивитися історію та розрахунок
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal Details -->
+    <div id="carModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-zinc-900 border border-zinc-800 w-full max-w-lg rounded-t-3xl sm:rounded-2xl p-5 space-y-4 max-h-[90vh] overflow-y-auto animate-slide-up">
+            <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
+                <h2 id="modalTitle" class="text-lg font-bold text-white">Деталі лота</h2>
+                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-xl px-2">✕</button>
+            </div>
+            <div class="space-y-3 text-sm">
+                <div class="bg-zinc-800/50 p-3 rounded-xl space-y-1">
+                    <p class="text-xs text-zinc-400 font-medium">Ціна з урахуванням доставки та розмитнення:</p>
+                    <p id="modalPrice" class="text-xl font-black text-amber-400"></p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div class="bg-zinc-800/30 p-2.5 rounded-lg"><span class="text-zinc-400">Локація:</span> <span id="modalLocation" class="font-medium text-white"></span></div>
+                    <div class="bg-zinc-800/30 p-2.5 rounded-lg"><span class="text-zinc-400">Пробіг:</span> <span id="modalMileage" class="font-medium text-white"></span></div>
+                </div>
+                <div class="bg-zinc-800/30 p-3 rounded-xl space-y-1">
+                    <span class="text-xs text-zinc-400 font-medium">Характер пошкоджень / Історія:</span>
+                    <p id="modalDamage" class="text-xs text-zinc-200 leading-relaxed"></p>
+                </div>
+                <div class="pt-2">
+                    <button onclick="orderCar()" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-3 rounded-xl text-sm transition shadow-lg">
+                        Замовити підрахунок та прорахунок доставки
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        let currentFilter = 'all';
+
+        function setFilter(category, btn) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-amber-500', 'text-zinc-950', 'font-semibold');
+                b.classList.add('bg-zinc-900', 'border', 'border-zinc-800', 'text-zinc-300');
+            });
+            btn.classList.remove('bg-zinc-900', 'border', 'border-zinc-800', 'text-zinc-300');
+            btn.classList.add('bg-amber-500', 'text-zinc-950', 'font-semibold');
+            filterCars();
+        }
+
+        function filterCars() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.car-card');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const name = card.getAttribute('data-name');
+                const matchesCategory = (currentFilter === 'all' || category === currentFilter);
+                const matchesQuery = name.includes(query);
+
+                if (matchesCategory && matchesQuery) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openCarModal(name, price, location, mileage, damage) {
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalLocation').innerText = location;
+            document.getElementById('modalMileage').innerText = mileage;
+            document.getElementById('modalDamage').innerText = damage;
+            document.getElementById('carModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('carModal').classList.add('hidden');
+        }
+
+        function orderCar() {
+            tg.showAlert('Заявку прийнято! Наш менеджер зв’яжеться з вами у Telegram найближчим часом.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
